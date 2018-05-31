@@ -1,13 +1,25 @@
-abstract class Square{
+class Square{
   private int xCor;
   private int yCor;
+  private int state;
   private Boolean isClicked;
   
-  public Square(int x, int y){}
+  public Square(int x, int y, int newState){
+    xCor = x;
+    yCor = y;
+    state = newState;
+    isClicked = false;
+  }
   
-  abstract int getXCor();
+  public int getXCor(){
+    return xCor;
+  }
   
-  abstract int getYCor();
+  public int getYCor(){
+    return yCor;
+  }
   
-  abstract void reveal();
+  public void reveal(){
+    isClicked = true;
+  }
 }
