@@ -22,4 +22,7 @@ Which tasks can be delegated, and which must be collaboratively tackled?
 	that can be delegated are updating the devlog and fleshing out the READ.me.
 
 What is the timeline, and how does it accommodate setbacks, course changes?
-	
+	The timeline sets deadlines for the group to meet (obviously). It's importance
+	lies in it's clarity of tasks and expected deliverables of each group member.
+	It also helps enhance communication between the group as everyone would know
+	exactly what's due on what day and what they have to do to contribute.
