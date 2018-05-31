@@ -1,0 +1,25 @@
+Team emptyString -- Frank Chen, Max Millar, Daniel Jiang
+APCS2 pd2
+HW55 -- A Man, a Plan, a Canal: Panama!
+2018-05-31
+
+Which jobs are most crucial?
+	The coders and debuggers are the most crucial jobs. They focus on achieving
+	desired results while maintaining compliability. 
+
+Which components constitute core functionality (vs non-essential)?
+	Square class, NumberSquare class, and Mine class are the key components
+	that works together to simulate a minesweeper game. 
+
+Which components are prerequisites for others?
+	The Square class acts as the parent of the NumberSquare class and the Mine
+	class. It's also necessary to setup a suitable background and size since
+	we're working with Processing.
+
+Which tasks can be delegated, and which must be collaboratively tackled?
+	Coding can be collaboratively tackled; each member devotes a good portion
+	of their time to the code every day but separately from one another. Tasks
+	that can be delegated are updating the devlog and fleshing out the READ.me.
+
+What is the timeline, and how does it accommodate setbacks, course changes?
+	
