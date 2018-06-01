@@ -50,17 +50,22 @@ LESSONS LEARNED
 
 2018-05-29
 --------------------------------------------------------------
-
+Max Millar: Created final project repo and proposal
+Daniel Jiang: Worked on READme
+Frank Chen: Created devlog
 
 
 2018-05-30
 --------------------------------------------------------------
-
+Frank Chen: Created plan of action and updated repo
+Max Millar: Started on coding
 
 
 2018-05-31
 --------------------------------------------------------------
-
+Daniel Jiang: Continued working on READ.me
+Frank Chen: Created flowchart and UML diagram
+Max Millar: Created Square class
 
 
 2018-06-01
