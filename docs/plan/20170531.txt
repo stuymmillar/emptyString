@@ -4,6 +4,9 @@ HW57 -- Changes in Latitude, Changes in Attitude
 2018-06-03
 
 Which jobs are most crucial?
+	While we are trying to make our project as layered and as nuanced as possible,
+	there are of course things that we must do before we complete auxiliary
+	functions. First and foremost, the base code for a working model must exist.
 	In order to create an AI for solving Minesweeper, it's necessary for us to
 	construct the foundation for Minesweeper beforehand. Our group decided on
 	first creating a playable Minesweeper game first to understand the basics
@@ -14,7 +17,9 @@ Which components constitute core functionality (vs non-essential)?
 	and run everything while the Square class will act either as a SAFE square,
  	or a MINE square. Originally, our plan was to have a NumberSquare class and 
 	MineSquare class. But after much thought and discussions, we decided that we 
-	can simply combine them into one Square class.
+	can simply combine them into one Square class. Anything extra such as AI as
+	mentioned before will be implemented after these two classes are seen to
+	completion.
 
 Which components are prerequisites for others?
 	Completing the Square class first is necessary for the Driver class to work.
@@ -32,4 +37,10 @@ What is the timeline, and how does it accommodate setbacks, course changes?
 	The timeline sets deadlines for the group to meet (obviously). It's importance
 	lies in it's clarity of tasks and expected deliverables of each group member.
 	It also helps enhance communication between the group as everyone would know
-	exactly what's due on what day and what they have to do to contribute.
+	exactly what's due on what day and what they have to do to contribute. We
+	intend to spend a reasonable amount of time afterschool to work on our code,
+	either in the dojo or at home, depending on the situation of the day. We will
+	use the time in class when we are all conveniently together to reconvene and
+	discuss any roadblocks or breakthroughs we have made. In the case where we cannot
+	meet in class such as with tuesday and thursday this week, we can simply email
+	one another at a set time of our plans.
