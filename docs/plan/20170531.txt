@@ -11,10 +11,10 @@ Which jobs are most crucial?
 
 Which components constitute core functionality (vs non-essential)?
 	Simply 2 classes would suffice: Driver and Square class. Driver would setup
-	and run everything while the Square class either be SAFE or MINE. Originally,
-	our plan was to have a NumberSquare class and MineSquare class. But after much
-	thought and discussions, we decided that we can simply combine them into one
-	Square class.
+	and run everything while the Square class will act either as a SAFE square,
+ 	or a MINE square. Originally, our plan was to have a NumberSquare class and 
+	MineSquare class. But after much thought and discussions, we decided that we 
+	can simply combine them into one Square class.
 
 Which components are prerequisites for others?
 	Completing the Square class first is necessary for the Driver class to work.
