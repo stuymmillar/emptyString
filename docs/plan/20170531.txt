@@ -1,7 +1,7 @@
 Team emptyString -- Frank Chen, Max Millar, Daniel Jiang
 APCS2 pd2
-HW55 -- A Man, a Plan, a Canal: Panama!
-2018-05-31
+HW57 -- Changes in Latitude, Changes in Attitude
+2018-06-03
 
 Which jobs are most crucial?
 	In order to create an AI for solving Minesweeper, it's necessary for us to
