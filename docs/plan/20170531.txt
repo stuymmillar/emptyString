@@ -4,17 +4,24 @@ HW55 -- A Man, a Plan, a Canal: Panama!
 2018-05-31
 
 Which jobs are most crucial?
-	The coders and debuggers are the most crucial jobs. They focus on achieving
-	desired results while maintaining compliability. 
+	In order to create an AI for solving Minesweeper, it's necessary for us to
+	construct the foundation for Minesweeper beforehand. Our group decided on
+	first creating a playable Minesweeper game first to understand the basics
+	and how the code would work. After that, an AI should be easier to create.
 
 Which components constitute core functionality (vs non-essential)?
-	Square class, NumberSquare class, and Mine class are the key components
-	that works together to simulate a minesweeper game. 
+	Simply 2 classes would suffice: Driver and Square class. Driver would setup
+	and run everything while the Square class either be SAFE or MINE. Originally,
+	our plan was to have a NumberSquare class and MineSquare class. But after much
+	thought and discussions, we decided that we can simply combine them into one
+	Square class.
 
 Which components are prerequisites for others?
-	The Square class acts as the parent of the NumberSquare class and the Mine
-	class. It's also necessary to setup a suitable background and size since
-	we're working with Processing.
+	Completing the Square class first is necessary for the Driver class to work.
+	However, it's recommended that we work simultaneously on both classes as its
+	easier to debug and we can test the code as we work. The Solver class, however,
+	must (not really but most recommended) be implemented after creating the Driver
+	and Square class.
 
 Which tasks can be delegated, and which must be collaboratively tackled?
 	Coding can be collaboratively tackled; each member devotes a good portion
