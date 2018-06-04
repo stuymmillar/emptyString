@@ -5,6 +5,7 @@ class Square{
   private int xCor;
   private int yCor;
   private int state;
+  private int number;
   private boolean isClicked;
  
   public Square()
