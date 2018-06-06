@@ -17,11 +17,11 @@ class Square{
     number = 0;
     if( status <= 1 )
     {
-      state = MINE;
+      state = 1;
     }
     else
     {
-      state = SAFE;
+      state = 0;
     }
   }
   
@@ -43,6 +43,16 @@ class Square{
   public void setYCor( int newCor )
   {
     yCor = newCor;
+  }
+  
+  public int getXCor()
+  {
+    return xCor;
+  }
+  
+  public int getYCor()
+  {
+    return yCor;
   }
   
   public void reveal()

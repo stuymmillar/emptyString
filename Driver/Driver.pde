@@ -19,200 +19,84 @@ void setup()
     xCor = 0;
     yCor += 50;
   }
-  for( int row = 0; row < 16; row++ ) // Set up numbers
+  for( int row = 0; row < 16; row++ ) 
+  { 
+    for( int col = 0; col < 16; col++ ) 
+    { 
+      for( int rowOffs = -1; rowOffs <=1; rowOffs++ ) 
+      {
+        for( int colOffs = -1; colOffs <= 1; colOffs++ ) 
+        {
+          int posX = col + colOffs;
+          int posY = row + rowOffs;
+          if ( ( posY >= 0 ) && ( posY < 16 ) && 
+               ( posX >= 0 ) && ( posX < 16 ) ||
+               ( ( colOffs != 0 ) && ( rowOffs != 0 ) ) 
+             ) 
+          {
+            if ( squares[ row ][ col ].state == 0 ) 
+            {
+              squares[row][col].number++;
+            }
+          }
+        }
+      }
+    }
+  }
+  for( int row = 0; row < 16; row++ )
   {
     for( int col = 0; col < 16; col++ )
     {
-      if( squares[ row ][ col ].state == 0 ) // If square is safe
+      if( squares[ row ][ col ].state == 0 )
       {
-        if( row == 0 && col == 0 ) // If square is top left corner
+        squares[ row ][ col ].getXCor();
+        squares[ row ][ col ].getYCor();
+        if( squares[ row ][ col ].number == 1 )
         {
-          if( squares[ row++ ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "One.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( row == 0 && col == 15 ) // If square is top right corner
+        else if( squares[ row ][ col ].number == 2 )
         {
-          if( squares[ row++ ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "Two.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( row == 15 && col == 15 ) // If square is bottom right corner
+        else if( squares[ row ][ col ].number == 3 )
         {
-          if( squares[ row ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "Three.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( row == 15 && col == 0 ) // If square is bottom left corner
+        else if( squares[ row ][ col ].number == 4 )
         {
-          if( squares[ row-- ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "Four.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( row == 0 ) // If square is top row
+        else if( squares[ row ][ col ].number == 5 )
         {
-          if( squares[ row ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "Five.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( row == 15 ) // If square is bottom row
+        else if( squares[ row ][ col ].number == 6 )
         {
-          if( squares[ row ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "Six.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( col == 0 ) // If square is left column
+        else if( squares[ row ][ col ].number == 7 )
         {
-          if( squares[ row-- ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "Seven.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( col == 15 ) // If square is right column
+        else if( squares[ row ][ col ].number == 8 )
         {
-          if( squares[ row-- ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          PImage img = loadImage( "Eight.jpg" );
+          image( img, xCor, yCor );
         }
-        else if( row != 0 && row != 15 && col != 0 && col != 15 )
+        else
         {
-          if( squares[ row-- ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row-- ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col++ ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row++ ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
-          if( squares[ row ][ col-- ].state == 1 )
-          {
-            squares[ row ][ col ].number++;
-          }
+          return;
         }
-      } // end if square is mine
+      }
     }
   }
+  
 } // end setup()
