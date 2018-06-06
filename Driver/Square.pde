@@ -7,15 +7,20 @@ class Square{
   private int state;
   private int number;
   private boolean isClicked;
+  private boolean isFlagged;
+  private boolean gameOver;
+  private int c = color( 87 );
  
   public Square()
   {
     xCor = 0;
     yCor = 0;
     isClicked = false;
+    isFlagged = false;
+    gameOver = false;
     state = 0;
     number = 0;
-    if( status <= 1 )
+    if( status <= 2 )
     {
       state = 1;
     }
@@ -36,6 +41,7 @@ class Square{
     {
       PImage img = loadImage( "Mine.jpg" );
       image( img, xCor, yCor );
+      gameOver = true;
     }
     else
     {
@@ -81,9 +87,18 @@ class Square{
       }
       else
       {
-        return;
+        PImage img = loadImage( "Empty.jpg" );
+        image( img, xCor, yCor );
       }
     }
+    isClicked = true;
+  }
+  
+  public void placeFlag()
+  {
+    PImage img = loadImage( "Flag.jpg" );
+    image( img, xCor, yCor );
+    isFlagged = true;
   }
   
   public void setXCor( int newCor )
@@ -94,21 +109,6 @@ class Square{
   public void setYCor( int newCor )
   {
     yCor = newCor;
-  }
-  
-  public int getXCor()
-  {
-    return xCor;
-  }
-  
-  public int getYCor()
-  {
-    return yCor;
-  }
-  
-  public void reveal()
-  {
-    isClicked = true;
   }
   
 }
