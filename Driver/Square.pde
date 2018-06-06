@@ -20,7 +20,7 @@ class Square{
     gameOver = false;
     state = 0;
     number = 0;
-    if( status <= 2 )
+    if( status <= 1 )
     {
       state = 1;
     }

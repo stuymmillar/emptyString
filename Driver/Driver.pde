@@ -59,8 +59,6 @@ void mouseClicked()
 
 void draw()
 {
-  int r = -1;
-  int c = -1;
   if( reveal == true )
   {
     for( int row = 0; row < 16; row++ )
@@ -75,11 +73,22 @@ void draw()
             ( squares[ row ][ col ].isFlagged == false ) )
         {
           squares[ row ][ col ].update2();
-          if( squares[ row ][ col ].number == 0 )
+          if( squares[ row ][ col ].state == 1 )
           {
-            r = row;
-            c = col;
-            loop = true;
+            for( int r = 0; r < 16; r++ )
+            {
+              for( int c = 0; c < 16; c++ )
+              {
+                if( squares[ r ][ c ].isClicked == false )
+                {
+                  squares[ r ][ c ].update2();
+                }
+              }
+            }
+          }
+          else if( squares[ row ][ col ].number == 0 )
+          {
+            recurse( row, col );
           }
         }
       }
@@ -112,4 +121,36 @@ void draw()
   }
   reveal = false;
   flag = false;
+}
+
+public void recurse( int row, int col )
+{
+  if( squares[ row ][ col ].state == 1)
+  {
+    return;
+  }
+  else if( squares[ row ][ col ].number != 0 )
+  {
+    squares[ row ][ col ].update2();
+    return;
+  }
+  else
+  {
+    for( int rowOffs = -1; rowOffs <= 1; rowOffs++ ) 
+    {
+      for( int colOffs = -1; colOffs <= 1; colOffs++ ) 
+      {
+        int posX = row + rowOffs;
+        int posY = col + colOffs;
+        if( posX != -1 && posY != -1 && posX != 16 && posY != 16 )
+        {
+          if( squares[ posX ][ posY ].isClicked == false )
+          {
+            squares[ posX ][ posY ].update2();
+            recurse( posX, posY );
+          }
+        }
+      }
+    }
+  }
 }
