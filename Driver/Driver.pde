@@ -52,7 +52,7 @@ void mouseClicked()
     reveal = true;
   }
   else if( mouseButton == RIGHT )
-  {
+  { //<>//
     flag = true;
   }
 }
@@ -110,35 +110,6 @@ void draw()
       }
     }
   }
-  if( loop == true )
-  {
-    recurse( r, c );
-  }
   reveal = false;
   flag = false;
 }
-
-public void recurse( int r, int c )
-{
-  if( r != -1 && c != -1 )
-  {
-    for( int rowOffs = -1; rowOffs <= 1; rowOffs++ ) 
-    {
-      for( int colOffs = -1; colOffs <= 1; colOffs++ ) 
-      {
-        int posX = r + rowOffs;
-        int posY = c + colOffs;
-        if( posX != -1 && posY != -1 && posX != 16 && posY != 16 )
-        {
-          squares[ posX ][ posY ].update2();
-          if( squares[ posX ][ posY ].state == 0 )
-          {
-            recurse( posX, posY );
-          }
-        }
-      }
-    }
-    r = -1;
-    c = -1;
-  }
-} // end recurse( r, c )
