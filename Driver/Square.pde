@@ -13,6 +13,8 @@ class Square{
     xCor = 0;
     yCor = 0;
     isClicked = false;
+    state = 0;
+    number = 0;
     if( status <= 1 )
     {
       state = MINE;
