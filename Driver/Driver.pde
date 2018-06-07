@@ -1,15 +1,18 @@
 Square[][] squares = new Square[ 16 ][ 16 ];
 int xCor = 0;
 int yCor = 0;
+boolean gameOver = false;
 boolean reveal = false;
 boolean flag = false;
 boolean loop = false;
+int firstClick = 0;
 
 void setup()
 {
   background( 0 );
   size( 800, 800 );
-  for( int row = 0; row < 16; row++ ) // Set up squares
+  // Sets up board
+  for( int row = 0; row < 16; row++ )
   {
     for( int col = 0; col < 16; col++ )
     {
@@ -22,7 +25,8 @@ void setup()
     xCor = 0;
     yCor += 50;
   }
-  for( int row = 0; row < 16; row++ ) // Get adjacent mines
+  // Gets adjacent mines for all safe squares
+  for( int row = 0; row < 16; row++ )
   { 
     for( int col = 0; col < 16; col++ ) 
     { 
@@ -49,7 +53,15 @@ void mouseClicked()
 {
   if( mouseButton == LEFT )
   {
-    reveal = true;
+    if( firstClick == 0 )
+    {
+      firstClick = 1;
+      reveal = true;
+    }
+    else
+    {
+      reveal = true;
+    }
   }
   else if( mouseButton == RIGHT )
   { //<>//
@@ -59,8 +71,13 @@ void mouseClicked()
 
 void draw()
 {
-  if( reveal == true )
+  if( gameOver == true )
   {
+    
+  }
+  if( reveal == true )
+  { 
+    // Constantly track mouse location relative to squares
     for( int row = 0; row < 16; row++ )
     {
       for( int col = 0; col < 16; col++ )
@@ -71,7 +88,17 @@ void draw()
             ( mouseY <= squares[ row ][ col ].yCor + 50 ) &&
             ( squares[ row ][ col ].isClicked == false ) &&
             ( squares[ row ][ col ].isFlagged == false ) )
-        {
+        { 
+          // Considers if first click is on a mine square
+          if( firstClick == 1 && squares[ row ][ col ].state == 1 )
+          {
+            firstClickMine( row, col );
+            firstClick = -1;
+          }
+          else
+          {
+            firstClick = -1;
+          }
           squares[ row ][ col ].update2();
           if( squares[ row ][ col ].state == 1 )
           {
@@ -85,6 +112,7 @@ void draw()
                 }
               }
             }
+            gameOver = true;
           }
           else if( squares[ row ][ col ].number == 0 )
           {
@@ -151,6 +179,65 @@ public void recurse( int row, int col )
           }
         }
       }
+    }
+  }
+}
+
+public void firstClickMine( int x, int y )
+{
+  // Remove mine and change to safe square
+  squares[ x ][ y ].setState( 0 );
+  // Get adjacent mines for changed square
+  squares[ x ][ y ].setNumber( 0 );
+  for( int rowOffs = -1; rowOffs <= 1; rowOffs++ ) 
+  {
+    for( int colOffs = -1; colOffs <= 1; colOffs++ ) 
+    {
+      int posX = x + rowOffs;
+      int posY = y + colOffs;
+      if( posX != -1 && posY != -1 && posX != 16 && posY != 16 )
+      {
+        if( squares[ posX ][ posY ].state == 0 )
+        {
+          // Minus one number off neighboring square of changed square
+          squares[ posX ][ posY ].setNumber( squares[ posX ][ posY ].number - 1 );
+        }
+        if( squares[ posX ][ posY ].state == 1 )
+        {
+          // Sets number of adjacent mines for changed square
+          squares[ x ][ y ].number++;
+        }
+      }
+    }
+  }
+  // Place removed mine at upper left corner
+  boolean placed = false;
+  // If there already is a mine, go through board until a safe square is found
+  for( int i = 0; i < 16; i++ )
+  {
+    for( int j = 0; j < 16; j++ )
+    {
+      if( placed == false && squares[ i ][ j ].state == 0 )
+      {
+        squares[ i ][ j ].setState( 1 );
+        // Change numbers of adjacent safe squares
+        for( int rowOffs = -1; rowOffs <= 1; rowOffs++ ) 
+        {
+          for( int colOffs = -1; colOffs <= 1; colOffs++ ) 
+          {
+            int posX = i + rowOffs;
+            int posY = j + colOffs;
+            if( posX != -1 && posY != -1 && posX != 16 && posY != 16 )
+            {
+              if( squares[ posX ][ posY ].state == 0 )
+              {
+                squares[ posX ][ posY ].number++;
+              }
+            }
+          }
+        }
+      }
+      placed = true;
     }
   }
 }

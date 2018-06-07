@@ -1,15 +1,13 @@
 class Square{
   final int SAFE = 0;
   final int MINE = 1;
-  private float status = random( 0, 10 );
+  private float status = random( 0, 20 );
   private int xCor;
   private int yCor;
   private int state;
   private int number;
   private boolean isClicked;
   private boolean isFlagged;
-  private boolean gameOver;
-  private int c = color( 87 );
  
   public Square()
   {
@@ -20,7 +18,7 @@ class Square{
     gameOver = false;
     state = 0;
     number = 0;
-    if( status <= 1 )
+    if( status <= 3 )
     {
       state = 1;
     }
@@ -41,7 +39,6 @@ class Square{
     {
       PImage img = loadImage( "Mine.jpg" );
       image( img, xCor, yCor );
-      gameOver = true;
     }
     else
     {
@@ -109,6 +106,16 @@ class Square{
   public void setYCor( int newCor )
   {
     yCor = newCor;
+  }
+  
+  public void setState( int newState )
+  {
+    state = newState;
+  }
+  
+  public void setNumber( int newNumber )
+  {
+    number = newNumber;
   }
   
 }
