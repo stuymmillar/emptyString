@@ -1,7 +1,7 @@
 class Square{
   final int SAFE = 0;
   final int MINE = 1;
-  private float status = random( 0, 20 );
+  private float status = random( 0, 50 );
   private int xCor;
   private int yCor;
   private int state;
@@ -18,7 +18,7 @@ class Square{
     gameOver = false;
     state = 0;
     number = 0;
-    if( status <= 3 )
+    if( status <= 9 )
     {
       state = 1;
     }

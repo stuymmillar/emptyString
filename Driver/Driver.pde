@@ -89,14 +89,9 @@ void draw()
             ( squares[ row ][ col ].isClicked == false ) &&
             ( squares[ row ][ col ].isFlagged == false ) )
         { 
-          // Considers if first click is on a mine square
-          if( firstClick == 1 && squares[ row ][ col ].state == 1 )
+          if( firstClick == 1 )
           {
-            firstClickMine( row, col );
-            firstClick = -1;
-          }
-          else
-          {
+            firstClickMethod( row, col );
             firstClick = -1;
           }
           squares[ row ][ col ].update2();
@@ -183,12 +178,11 @@ public void recurse( int row, int col )
   }
 }
 
-public void firstClickMine( int x, int y )
+public void firstClickMethod( int x, int y )
 {
-  // Remove mine and change to safe square
   squares[ x ][ y ].setState( 0 );
-  // Get adjacent mines for changed square
   squares[ x ][ y ].setNumber( 0 );
+  // Change adjacent squares to safe squares
   for( int rowOffs = -1; rowOffs <= 1; rowOffs++ ) 
   {
     for( int colOffs = -1; colOffs <= 1; colOffs++ ) 
@@ -197,47 +191,42 @@ public void firstClickMine( int x, int y )
       int posY = y + colOffs;
       if( posX != -1 && posY != -1 && posX != 16 && posY != 16 )
       {
-        if( squares[ posX ][ posY ].state == 0 )
-        {
-          // Minus one number off neighboring square of changed square
-          squares[ posX ][ posY ].setNumber( squares[ posX ][ posY ].number - 1 );
-        }
         if( squares[ posX ][ posY ].state == 1 )
         {
-          // Sets number of adjacent mines for changed square
-          squares[ x ][ y ].number++;
+          squares[ posX ][ posY ].setState( 0 );
         }
+        squares[ posX ][ posY ].setNumber( 0 );
       }
     }
   }
-  // Place removed mine at upper left corner
-  boolean placed = false;
-  // If there already is a mine, go through board until a safe square is found
-  for( int i = 0; i < 16; i++ )
+  resetBoard();
+}
+
+public void resetBoard()
+{
+  for( int row = 0; row < 16; row++ )
   {
-    for( int j = 0; j < 16; j++ )
+    for( int col = 0; col < 16; col++ )
     {
-      if( placed == false && squares[ i ][ j ].state == 0 )
+      if( squares[ row ][ col ].state == 0 )
       {
-        squares[ i ][ j ].setState( 1 );
-        // Change numbers of adjacent safe squares
-        for( int rowOffs = -1; rowOffs <= 1; rowOffs++ ) 
+        squares[ row ][ col ].setNumber( 0 );
+        for( int rowOffs = -1; rowOffs <= 1; rowOffs++ )
         {
-          for( int colOffs = -1; colOffs <= 1; colOffs++ ) 
+          for( int colOffs = -1; colOffs <= 1; colOffs++ )
           {
-            int posX = i + rowOffs;
-            int posY = j + colOffs;
+            int posX = row + rowOffs;
+            int posY = col + colOffs;
             if( posX != -1 && posY != -1 && posX != 16 && posY != 16 )
             {
-              if( squares[ posX ][ posY ].state == 0 )
+              if( squares[ posX ][ posY ].state == 1 )
               {
-                squares[ posX ][ posY ].number++;
+                squares[ row ][ col ].number++;
               }
             }
           }
         }
       }
-      placed = true;
     }
   }
 }
